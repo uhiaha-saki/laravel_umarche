@@ -11,20 +11,20 @@ git clone -b ブランチ名 https://github.com/uhiaha-saki/laravel_umarche
 
 ## インストール方法
 
--cd laravel_umarche
--composer install または composer update
--npm install
--npm run dev
+- cd laravel_umarche
+- composer install または composer update
+- npm install
+- npm run dev
 .env.example をコピーして .env ファイルを作成
 
 .envファイルの中の下記をご利用の環境に合わせて変更してください。
 
--DB_CONNECTION=mysql
--DB_HOST=127.0.0.1
--DB_PORT=3306
--DB_DATABASE=laravel
--DB_USERNAME=root
--DB_PASSWORD=saki2315
+- DB_CONNECTION=mysql
+- DB_HOST=127.0.0.1
+- DB_PORT=3306
+- DB_DATABASE=laravel
+- DB_USERNAME=root
+- DB_PASSWORD=saki2315
 
 
 XAMPP/MAMPまたは他の開発環境でDBを起動した後に
