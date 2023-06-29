@@ -50,10 +50,7 @@ maimai{
                                 @else
                                 <img src="">
                                 @endif
-                            </div>
-
-
-                            
+                            </div>                          
                             
                             </div>
                             <!-- If we need pagination -->
