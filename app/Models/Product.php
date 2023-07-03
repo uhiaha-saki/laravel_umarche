@@ -117,7 +117,7 @@ class Product extends Model
 
     public function scopeSelectCategory($query, $categoryId)
     {
-        if($categoryId !== 0)
+        if($categoryId !== '0')
         {
             return $query->where('secondary_category_id',$categoryId);
         }else {
@@ -138,7 +138,7 @@ class Product extends Model
             //単語をループで回す
             foreach($keywords as $word)
             {
-                $query->where('product.name','like','%'.$word.'%');
+                $query->where('products.name','like','%'.$word.'%');
 
             }
             return $query;
