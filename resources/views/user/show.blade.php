@@ -1,10 +1,4 @@
 <x-app-layout>
-    <style>
-maimai{
-    padding-left: 20px;
-}
-    </style>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             商品の詳細

@@ -155,13 +155,13 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $quantity = Stock::where('product_id', $product->id)->sum('quantity');
 
-        if($request->current_quantity !== $quantity){
-            $id= $request->route()->parameter('product');
-            return redirect()->route('owner.products.edit',['product' => $id ])
-            ->with(['message' => '在庫数が変更されています。再度確認してください。',
-             'status' => 'alert']);
+        // if($request->current_quantity !== $quantity){
+        //     $id= $request->route()->parameter('product');
+        //     return redirect()->route('owner.products.edit',['product' => $id ])
+        //     ->with(['message' => '在庫数が変更されています。再度確認してください。',
+        //      'status' => 'alert']);
 
-        } else {
+        // } else {
 
             try{
                 DB::transaction(function () use($request, $product){
@@ -204,7 +204,7 @@ class ProductController extends Controller
             ->with(['message' => '商品情報を更新しました。',
              'status' => 'info']);
 
-        }
+        // }
     }
 
     /**

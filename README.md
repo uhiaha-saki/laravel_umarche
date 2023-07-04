@@ -1,44 +1,143 @@
-## Laravel php自作
+## Laravel php自作「つなぐマルシェ」
+- 概要
+直売所を利用する生産者と消費者をつなぎ、地方の
+農業を活性化させる一助となるようなサイトを作りました。
+
+ユーザー(消費者)、オーナー(生産者)、サイト管理者にわけ、マルチログインできるようになっております。
+
+## 使い方
+- ユーザー(消費者)
+
+直売所の商品一覧をみることができ、商品詳細を確認することができます。
+また、商品のカテゴリーや値段順などに合わせて検索する機能もあります。
+
+カート追加機能・決済機能もつけております。
+（Stripe決済ライブラリを使用）
+
+- オーナー(生産者)
+
+商品情報(説明・在庫登録)、商品画像、店情報
+を登録することができます。
+それぞれ、編集・削除ができます。
+
+- サイト管理者
+
+オーナー情報を見ることができ、新規登録、編集、削除を行うことができます。
+
+また、削除はソフトデリートとデリーと二段階になっています。
+
 ## ダウンロード方法
 
-git clone
-git clone https://github.com/uhiaha-saki/laravel_umarche
+ https://github.com/uhiaha-saki/laravel_umarche
 
-git clone ブランチを指定してダウンロードする場合
-git clone -b ブランチ名 https://github.com/uhiaha-saki/laravel_umarche
-
-もしくはzipファイルでダウンロードください。
+（Secが大きくなるほど新しいものです）
 
 ## インストール方法
 
--cd laravel_umarche
--composer install または composer update
--npm install
--npm run dev
-.env.example をコピーして .env ファイルを作成
-
 .envファイルの中の下記をご利用の環境に合わせて変更してください。
 
--DB_CONNECTION=mysql
--DB_HOST=127.0.0.1
--DB_PORT=3306
--DB_DATABASE=laravel
--DB_USERNAME=root
--DB_PASSWORD=saki2315
+- DB_CONNECTION=mysql
+- DB_HOST=127.0.0.1
+- DB_PORT=3306
+- DB_DATABASE=laravel
+- DB_USERNAME=root
+- DB_PASSWORD=saki2315
+
+## テーブル情報
+
+- Ownersテーブル
+id
+name
+email
+password
+created_at
+updated_at
+deleted_at
 
 
-XAMPP/MAMPまたは他の開発環境でDBを起動した後に
+- Shopsテーブル
+id
+owner_id(FK)
+name
+information
+filename
+is_selling
+created_at
+updated_at
 
-php artisan migrate:fresh --seed
+- Productsテーブル
+id(AI,PK)
+shop_id(FK)
+name
+information
+price
+is_selling
+sort_order
+secondary_category_id(FK)
+image1(FK)
+image2(FK)
+image3(FK)
+image4(FK)
+created_at
+updated_at
 
-と実行してください。(データベーステーブルとダミーデータが追加されればOK)
 
-最後に
-php artisan key:generate
-と入力してキーを生成後、
+- Imagesテーブル
+id(AI)
+owner_id(FK)
+filename
+title
+created_at
+updated_at
 
-php artisan serve 
-で簡易サーバーを立ち上げ、表示確認してください。
+
+- Usersテーブル
+id(AI)
+name
+email
+password
+created_at
+updated_at
+
+
+- Cartsテーブル
+id(PK)
+user_id(FK)
+product_id(FK)
+quantity
+created_at
+updated_at
+
+
+- Adminsテーブル
+id（PK）
+name
+email
+password
+created_at
+updated_at
+
+- PrimaryCategoryテーブル
+id
+name
+sort_order
+
+
+- SecondaryCategoryテーブル
+id
+name
+primary_category_id
+sort_order
+
+
+- t_stocksテーブル
+id
+product_id（FK）
+type
+quantity
+created_at
+updated_at
+
 
 ## インストール後の実施事項
 
@@ -52,7 +151,8 @@ storageフォルダにリンク後、
 
 storage/app/public/productsフォルダ内に
 保存すると表示されます。
-(produvtsフォルダがない場合は作成してください。)
+(produvtsフォルダが
+ない場合は作成してください。)
 
 ショップの画像も表示する場合は
 storage/app/public/shopsフォルダ内を作成し
